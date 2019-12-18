@@ -1,8 +1,7 @@
 function handleChange(e) {
-  console.log("Change");
-  const math = document.getElementById("math").value;
-  const coef = document.getElementById("coef").value;
-  const img = document.getElementById("graph");
+  const math = $("#math").val();
+  const coef = $("#coef").val();
+  const img = '/' + math + '/' + coef;
 
-  img.src = '/' + math + '/' + coef;
+  $("#graph").attr("src", img);
 }

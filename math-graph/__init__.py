@@ -17,13 +17,21 @@ def home():
 
 @app.route('/sin/<signed_int:freq>')
 def graph_sine(freq):
-  x_values = np.arange(0, 10, 0.1)
+  x_values = np.arange(-5, 5, 0.01)
   y_values = np.sin(x_values*freq)
   return redirect(build_graph(x_values, y_values))
 
+@app.route('/cos/<signed_int:freq>')
+def graph_cosine(freq):
+  x_values = np.arange(-5, 5, 0.01)
+  y_values = np.cos(x_values*freq)
+  return redirect(build_graph(x_values, y_values))
 
+"""
+Function to return 1x1 transparent png
 @app.route('/<string:fn>/<signed_int:coef>')
 def graph_fn(fn, coef):
   image = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
   url = f"data:image/png;base64,{image}"
   return redirect(url)
+"""
