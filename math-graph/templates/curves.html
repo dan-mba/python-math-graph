@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <title>Curves</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='curves.css')}}" >
+{% endblock %}
+
+{% block content %}
+  <h1>Curves</h1>
+
+  <form class="form-inline">
+    <div class="form-group">
+      <label for="math">Function to Graph:</label>
+      <select id="math" class="form-control-sm mx-2" onchange="handleChange()">
+        <option value="quad" selected>Quadratic (a(x)&sup2; + b(x))</option>
+        <option value="pow">Power (a(x)&#x1d47;)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="a">a:</label>
+      <input
+        id="a"
+        class="form-control-sm mx-2 pr-0"
+        type="number"
+        value="1"
+        min="-10"
+        max="10"
+        step="1"
+        onchange="handleChange()"
+      >
+    </div>
+    <div class="form-group">
+      <label for="b">b:</label>
+      <input
+        id="b"
+        class="form-control-sm mx-2 pr-0"
+        type="number"
+        value="0"
+        min="-10"
+        max="10"
+        step="1"
+        onchange="handleChange()"
+      >
+    </div>
+  </form>
+  <br>
+  <img id="graph" src="/quad/1/1">
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript" src="{{ url_for('static', filename='curves.js')}}" ></script>
+{% endblock %}

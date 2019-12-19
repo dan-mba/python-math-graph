@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <title>Home Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='waves.css')}}" >
+{% endblock %}
+
+{% block content %}
+  <h1>Waves</h1>
+
+  <form class="form-inline">
+    <div class="form-group">
+      <label for="math">Function to Graph:</label>
+      <select id="math" class="form-control-sm mx-2" onchange="handleChange()">
+        <option value="sin" selected>Sin</option>
+        <option value="cos">Cos</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="coef">Frequency:</label>
+      <input
+        id="coef"
+        class="form-control-sm mx-2 pr-0"
+        type="number"
+        value="1"
+        min="-10"
+        max="10"
+        step="1"
+        onchange="handleChange()"
+      >
+    </div>
+  </form>
+  <br>
+  <img id="graph" src="/sin/1">
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript" src="{{ url_for('static', filename='waves.js')}}" ></script>
+{% endblock %}

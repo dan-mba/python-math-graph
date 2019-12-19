@@ -7,21 +7,33 @@
     <style>
       #main {
         padding-top: 60px;
-        text-align: center;
       }
       .navbar .container {
         justify-content: center;
+      }
+      img {
+        max-width: 100%;
       }
     </style>
     {% block head %}{% endblock %}
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-dark navbar-expand bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="/">Navbar</a>
+        <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold">
+          <li id="homelink" class="nav-item">
+            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+          </li>
+          <li id="waveslink" class="nav-item">
+            <a class="nav-link" href="{{ url_for('waves') }}">Waves</a>
+          </li>
+          <li id="curveslink" class="nav-item">
+            <a class="nav-link" href="{{ url_for('curves') }}">Curves</a>
+          </li>
+        </ul>
       </div>
     </nav>
-    <div id="main" class="container">
+    <div id="main" class="container text-center">
       {% block content %}{% endblock %}
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
