@@ -1,0 +1,1 @@
+web: gunicorn math-graph:app --log-file=-

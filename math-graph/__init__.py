@@ -48,7 +48,31 @@ def graph_pow(a, b):
   else:
     x_values = np.concatenate((np.arange(-.1, -.01, 0.001), np.arange(.01, .1, .001)))
   y_values = (a * np.power(x_values, b))
-  return redirect(build_graph(x_values, y_values))
+  return redirect(build_graph(x_values, y_values, True))
+
+@app.route('/exp/<signed_int:a>/<signed_int:b>')
+def graph_exp(a,b):
+  x_values = np.arange(-5, 5, 0.01)
+  y_values = (a * np.power(b, x_values))
+  return redirect(build_graph(x_values, y_values, True))
+
+@app.route('/expf/<signed_int:a>/<signed_int:b>')
+def graph_expf(a,b):
+  x_values = np.arange(-5, 5, 0.01)
+  y_values = (a * np.power((1/b), x_values))
+  return redirect(build_graph(x_values, y_values, True))
+
+@app.route('/ln/<signed_int:a>/<signed_int:b>')
+def graph_ln(a,b):
+  x_values = np.arange(0.01, 10, 0.01)
+  y_values = (a * np.log(x_values) + b)
+  return redirect(build_graph(x_values, y_values, True))
+
+@app.route('/log/<signed_int:a>/<signed_int:b>')
+def graph_log(a,b):
+  x_values = np.arange(0.01, 10, 0.01)
+  y_values = (a * np.log10(x_values) + b)
+  return redirect(build_graph(x_values, y_values, True))
 
 """
 Function to return 1x1 transparent png

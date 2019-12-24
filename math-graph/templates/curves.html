@@ -11,9 +11,13 @@
   <form class="form-inline">
     <div class="form-group">
       <label for="math">Function to Graph:</label>
-      <select id="math" class="form-control-sm mx-2" onchange="handleChange()">
+      <select id="math" class="form-control-sm mx-2" onchange="handleFuncChange()">
         <option value="quad" selected>Quadratic (a(x)&sup2; + b(x))</option>
         <option value="pow">Power (a(x)&#x1d47;)</option>
+        <option value="exp">Exponential (a(b)&#x02e3;)</option>
+        <option value="expf">Exponential Fraction (a(1/b)&#x02e3;)</option>
+        <option value="ln">Natural Log (a(ln(x))+b)</option>
+        <option value="log">Logarithm (a(log(x))+b)</option>
       </select>
     </div>
     <div class="form-group">
@@ -44,7 +48,7 @@
     </div>
   </form>
   <br>
-  <img id="graph" src="/quad/1/1">
+  <img id="graph" src="/quad/1/0">
 {% endblock %}
 
 {% block scripts %}
