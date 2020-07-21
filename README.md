@@ -1,4 +1,4 @@
-# flask-math-graph
+# Flask Function Graphs
 
-Work in progress
-Python Flask app to display matplotlib graphs
+Python Flask app to display graphs created using Numpy & Matplotlib.<br>
+The Pages are built using Jinja templates with Bootstrap & Jquery.
