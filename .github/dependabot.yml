@@ -1,0 +1,10 @@
+#dependabot configuration for pip
+
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-type: "production"
