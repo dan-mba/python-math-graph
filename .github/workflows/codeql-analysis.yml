@@ -14,15 +14,18 @@ name: "CodeQL"
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
 
     strategy:
       fail-fast: false
