@@ -1,56 +1,59 @@
-from flask import Flask, render_template, Response, redirect
-from werkzeug.routing import IntegerConverter
+from os import path
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import RedirectResponse
 from .graph import build_graph
 import numpy as np
 
-app = Flask(__name__)
+app = FastAPI()
+
+app.mount("/static", StaticFiles(directory=path.join(path.dirname(__file__),
+          "static")), name="static")
+
+templates = Jinja2Templates(directory=path.join(
+    path.dirname(__file__), "templates"))
 
 
-class SignedIntConverter(IntegerConverter):
-    regex = r'-?\d+'
+@app.get('/', response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse('home.html', {"request": request})
 
 
-app.url_map.converters['signed_int'] = SignedIntConverter
+@app.get('/waves', response_class=HTMLResponse)
+def waves(request: Request):
+    return templates.TemplateResponse('waves.html', {"request": request})
 
 
-@app.route('/')
-def home():
-    return render_template('home.html')
+@app.get('/curves', response_class=HTMLResponse)
+def curves(request: Request):
+    return templates.TemplateResponse('curves.html', {"request": request})
 
 
-@app.route('/waves')
-def waves():
-    return render_template('waves.html')
-
-
-@app.route('/curves')
-def curves():
-    return render_template('curves.html')
-
-
-@app.route('/sin/<signed_int:freq>')
-def graph_sine(freq):
+@app.get('/sin/{freq}')
+def graph_sine(freq: int):
     x_values = np.arange(-5, 5, 0.01)
     y_values = np.sin(x_values*freq)
-    return redirect(build_graph(x_values, y_values))
+    return RedirectResponse(build_graph(x_values, y_values))
 
 
-@app.route('/cos/<signed_int:freq>')
-def graph_cosine(freq):
+@app.get('/cos/{freq}')
+def graph_cosine(freq: int):
     x_values = np.arange(-5, 5, 0.01)
     y_values = np.cos(x_values*freq)
-    return redirect(build_graph(x_values, y_values))
+    return RedirectResponse(build_graph(x_values, y_values))
 
 
-@app.route('/quad/<signed_int:a>/<signed_int:b>')
-def graph_quad(a, b):
+@app.get('/quad/{a}/{b}')
+def graph_quad(a: int, b: int):
     x_values = np.arange(-5, 5, 0.01)
     y_values = (a * np.power(x_values, 2)) + (b * x_values)
-    return redirect(build_graph(x_values, y_values))
+    return RedirectResponse(build_graph(x_values, y_values))
 
 
-@app.route('/pow/<signed_int:a>/<signed_int:b>')
-def graph_pow(a, b):
+@app.get('/pow/{a}/{b}')
+def graph_pow(a: int, b: int):
     if b >= 0:
         x_values = np.concatenate(
             (np.arange(-5, -.01, 0.01), np.arange(.01, 5, .01)))
@@ -58,42 +61,32 @@ def graph_pow(a, b):
         x_values = np.concatenate(
             (np.arange(-.1, -.01, 0.001), np.arange(.01, .1, .001)))
     y_values = (a * np.power(x_values, b))
-    return redirect(build_graph(x_values, y_values, True))
+    return RedirectResponse(build_graph(x_values, y_values, True))
 
 
-@app.route('/exp/<signed_int:a>/<signed_int:b>')
-def graph_exp(a, b):
+@app.get('/exp/{a}/{b}')
+def graph_exp(a: int, b: int):
     x_values = np.arange(-5, 5, 0.01)
     y_values = (a * np.power(b, x_values))
-    return redirect(build_graph(x_values, y_values, True))
+    return RedirectResponse(build_graph(x_values, y_values, True))
 
 
-@app.route('/expf/<signed_int:a>/<signed_int:b>')
-def graph_expf(a, b):
+@app.get('/expf/{a}/{b}')
+def graph_expf(a: int, b: int):
     x_values = np.arange(-5, 5, 0.01)
     y_values = (a * np.power((1/b), x_values))
-    return redirect(build_graph(x_values, y_values, True))
+    return RedirectResponse(build_graph(x_values, y_values, True))
 
 
-@app.route('/ln/<signed_int:a>/<signed_int:b>')
-def graph_ln(a, b):
+@app.get('/ln/{a}/{b}')
+def graph_ln(a: int, b: int):
     x_values = np.arange(0.01, 10, 0.01)
     y_values = (a * np.log(x_values) + b)
-    return redirect(build_graph(x_values, y_values, True))
+    return RedirectResponse(build_graph(x_values, y_values, True))
 
 
-@app.route('/log/<signed_int:a>/<signed_int:b>')
-def graph_log(a, b):
+@app.get('/log/{a}/{b}')
+def graph_log(a: int, b: int):
     x_values = np.arange(0.01, 10, 0.01)
     y_values = (a * np.log10(x_values) + b)
-    return redirect(build_graph(x_values, y_values, True))
-
-
-"""
-Function to return 1x1 transparent png
-@app.route('/<string:fn>/<signed_int:coef>')
-def graph_fn(fn, coef):
-  image = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-  url = f"data:image/png;base64,{image}"
-  return redirect(url)
-"""
+    return RedirectResponse(build_graph(x_values, y_values, True))
