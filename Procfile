@@ -1,1 +1,1 @@
-web: uvicorn math_graph:app --log-file=-
+web: gunicorn -w 2 -k uvicorn.workers.UvicornWorker math_graph:app --log-file=-
