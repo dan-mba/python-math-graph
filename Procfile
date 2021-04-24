@@ -1,1 +1,1 @@
-web: uvicorn math-graph:app --log-file=-
+web: uvicorn math_graph:app --log-file=-
