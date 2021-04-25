@@ -2,7 +2,7 @@
 
 {% block head %}
   <title>Home Page</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='waves.css')}}" >
+  <link rel="stylesheet" href="{{ url_for('static', path='/waves.css')}}" >
 {% endblock %}
 
 {% block content %}
@@ -35,5 +35,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script type="text/javascript" src="{{ url_for('static', filename='waves.js')}}" ></script>
+  <script type="text/javascript" src="{{ url_for('static', path='/waves.js')}}" ></script>
 {% endblock %}

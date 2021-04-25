@@ -2,7 +2,7 @@
 
 {% block head %}
   <title>Curves</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='curves.css')}}" >
+  <link rel="stylesheet" href="{{ url_for('static', path='/curves.css')}}" >
 {% endblock %}
 
 {% block content %}
@@ -52,5 +52,5 @@
 {% endblock %}
 
 {% block scripts %}
-  <script type="text/javascript" src="{{ url_for('static', filename='curves.js')}}" ></script>
+  <script type="text/javascript" src="{{ url_for('static', path='/curves.js')}}" ></script>
 {% endblock %}

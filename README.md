@@ -1,4 +1,4 @@
-# Flask Function Graphs
+# FastAPI Function Graphs
 
-Python Flask app to display graphs created using Numpy & Matplotlib.<br>
+Python FastAPI app to display graphs created using Numpy & Matplotlib.<br>
 The Pages are built using Jinja templates with Bootstrap & Jquery.
