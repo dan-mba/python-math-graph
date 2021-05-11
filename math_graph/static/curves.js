@@ -1,24 +1,30 @@
-$(function(){
-  $("#curveslink").addClass("active");
-  $("form").trigger("reset");
-})
+function ready(){
+  document.querySelector("#curveslink .nav-link").classList.add("active");
+  document.querySelector("form").reset();
+}
 
 function handleChange(e) {
-  const math = $("#math").val();
-  const a = $("#a").val();
-  const b = $("#b").val();
+  const math = document.getElementById("math").value;
+  const a = document.getElementById("a").value;
+  const b = document.getElementById("b").value;
   const img = '/' + math + '/' + a + '/' + b;
 
-  $("#graph").attr("src", img);
+  document.getElementById("graph").setAttribute("src", img);
 }
 
 function handleFuncChange(e) {
-  const math = $("#math").val();
+  const math = document.getElementById("math").value;
   if (math === "exp" || math === "expf") {
-    $("#b").attr("min", "1");
-    if (parseInt($("#b").val(), 10) < 1) {
-      $("#b").val("1");
+    document.getElementById("b").setAttribute("min", "1");
+    if (parseInt(document.getElementById("b").value, 10) < 1) {
+      document.getElementById("b").value = 2;
     }
   }
   handleChange(e);
+}
+
+if (document.readyState !== "loading") {
+  ready();
+} else {
+  document.addEventListener("DOMContentLoaded", ready);
 }

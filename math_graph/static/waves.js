@@ -1,11 +1,17 @@
-$(function(){
-  $("#waveslink").addClass("active");
-})
+function ready(){
+  document.querySelector("#waveslink .nav-link").classList.add("active");
+}
 
 function handleChange(e) {
-  const math = $("#math").val();
-  const coef = $("#coef").val();
+  const math = document.getElementById("math").value;
+  const coef = document.getElementById("coef").value;
   const img = '/' + math + '/' + coef;
 
-  $("#graph").attr("src", img);
+  document.getElementById("graph").setAttribute("src", img);
+}
+
+if (document.readyState !== "loading") {
+  ready();
+} else {
+  document.addEventListener("DOMContentLoaded", ready);
 }

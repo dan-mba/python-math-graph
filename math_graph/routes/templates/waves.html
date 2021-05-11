@@ -6,21 +6,21 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Waves</h1>
+  <h1 class="my-3">Waves</h1>
 
-  <form class="form-inline">
-    <div class="form-group">
-      <label for="math">Function to Graph:</label>
+  <form class="row row-cols-auto align-items-center justify-content-center">
+    <div class="mb-3 mb-0-md px-0">
+      <label for="math" class="col-form-label py-0 mb-1">Function to Graph:</label>
       <select id="math" class="form-control-sm mx-2" onchange="handleChange()">
         <option value="sin" selected>Sin</option>
         <option value="cos">Cos</option>
       </select>
     </div>
-    <div class="form-group">
-      <label for="coef">Frequency:</label>
+    <div class="mb-3 mb-0-md px-0">
+      <label for="coef" class="col-form-label py-0 mb-1">Frequency:</label>
       <input
         id="coef"
-        class="form-control-sm mx-2 pr-0"
+        class="form-control-sm mx-2 pe-0"
         type="number"
         value="1"
         min="-10"
