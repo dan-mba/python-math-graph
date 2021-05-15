@@ -10,8 +10,14 @@
 
 {% block scripts %}
 <script>
-$(function(){
-  $("#homelink").addClass("active");
-})
+function ready(){
+  document.querySelector("#homelink .nav-link").classList.add("active");
+}
+
+if(document.readyState !== "loading") {
+  ready();
+} else {
+  document.addEventListener("DOMContentLoaded", ready);
+}
 </script>
 {% endblock %}
