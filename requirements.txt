@@ -1,4 +1,4 @@
-fastapi==0.64.0
+fastapi==0.65.1
 uvicorn[standard]==0.13.4
 gunicorn==20.1.0
 jinja2==3.0.0
