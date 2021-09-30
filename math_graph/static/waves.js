@@ -3,7 +3,7 @@ function ready(){
 }
 
 function handleChange(e) {
-  const math = document.getElementById("math").value;
+  const math = DOMPurify.sanitize(document.getElementById("math").value);
   const coef = document.getElementById("coef").value;
   const img = '/' + math + '/' + coef;
 
