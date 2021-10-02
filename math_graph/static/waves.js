@@ -3,8 +3,8 @@ function ready(){
 }
 
 function handleChange(e) {
-  const math = document.getElementById("math").value;
-  const coef = document.getElementById("coef").value;
+  const math = DOMPurify.sanitize(document.getElementById("math").value);
+  const coef = DOMPurify.sanitize(document.getElementById("coef").value);
   const img = '/' + math + '/' + coef;
 
   document.getElementById("graph").setAttribute("src", img);

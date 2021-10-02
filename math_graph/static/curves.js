@@ -4,9 +4,9 @@ function ready(){
 }
 
 function handleChange(e) {
-  const math = document.getElementById("math").value;
-  const a = document.getElementById("a").value;
-  const b = document.getElementById("b").value;
+  const math = DOMPurify.sanitize(document.getElementById("math").value);
+  const a = DOMPurify.sanitize(document.getElementById("a").value);
+  const b = DOMPurify.sanitize(document.getElementById("b").value);
   const img = '/' + math + '/' + a + '/' + b;
 
   document.getElementById("graph").setAttribute("src", img);
