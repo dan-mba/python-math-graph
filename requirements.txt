@@ -6,4 +6,4 @@ aiofiles==0.7.0
 matplotlib==3.4.3
 numpy==1.21.3
 pylint==2.11.1
-autopep8==1.5.7
+autopep8==1.6.0
