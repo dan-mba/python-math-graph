@@ -5,17 +5,23 @@
   <link rel="stylesheet" href="{{ url_for('static', path='/waves.css')}}" >
 {% endblock %}
 
-{% block content %}
-  <h1 class="my-3">Waves</h1>
+{% block secnav %}
+<nav id="secnav" class="navbar navbar-expand sticky-top navbar-light">
+  <div class="container">
+    <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold">
+      <li class="nav-item" data-value="sin">
+        <a class="nav-link" href="/waves/sin">Sin</a>
+      </li>
+      <li class="nav-item" data-value="cos">
+        <a class="nav-link" href="/waves/cos">Cos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
 
+{% block content %}
   <form class="row row-cols-auto align-items-center justify-content-center">
-    <div class="mb-3 mb-0-md px-0">
-      <label for="math" class="col-form-label py-0 mb-1">Function to Graph:</label>
-      <select id="math" class="form-control-sm mx-2" onchange="handleChange()">
-        <option value="sin" selected>Sin</option>
-        <option value="cos">Cos</option>
-      </select>
-    </div>
     <div class="mb-3 mb-0-md px-0">
       <label for="coef" class="col-form-label py-0 mb-1">Frequency:</label>
       <input
@@ -31,9 +37,10 @@
     </div>
   </form>
   <br>
-  <img id="graph" src="/sin/1">
+  <img id="graph" src={{"/%s/1" % wave}}>
 {% endblock %}
 
 {% block scripts %}
+  <script type="text/javascript">let math = {{ wave | tojson }};</script>
   <script type="text/javascript" src="{{ url_for('static', path='/waves.js')}}" ></script>
 {% endblock %}

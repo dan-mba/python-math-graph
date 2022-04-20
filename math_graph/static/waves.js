@@ -1,11 +1,12 @@
 function ready(){
   document.querySelector("#waveslink .nav-link").classList.add("active");
+  document.querySelector(`li[data-value='${math}'] a`).classList.add("active");
 }
 
-function handleChange(e) {
-  const math = DOMPurify.sanitize(document.getElementById("math").value);
+function handleChange() {
+  const func = DOMPurify.sanitize(math);
   const coef = DOMPurify.sanitize(document.getElementById("coef").value);
-  const img = '/' + math + '/' + coef;
+  const img = `/${math}/${coef}`;
 
   document.getElementById("graph").setAttribute("src", img);
 }
