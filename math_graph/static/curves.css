@@ -1,3 +1,15 @@
+.navbar-light {
+  background-color: #e8e8e8;
+}
+
+.nav-item {
+  line-height: 1.1rem;
+}
+
+.nav-link {
+  text-align: center;
+}
+
 input {
   width: 5em;
 }

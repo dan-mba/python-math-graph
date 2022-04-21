@@ -1,9 +1,13 @@
 from os import path
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 router = APIRouter()
+
+wavesList = ['sin', 'cos']
+curvesList = ['quad', 'pow', 'exp', 'expf', 'ln', 'log']
+bZero = ['quad', 'ln', 'log']
 
 templates = Jinja2Templates(directory=path.join(
     path.dirname(__file__), "templates"))
@@ -20,9 +24,28 @@ def waveRedirect():
 
 @router.get('/waves/{wave}', response_class=HTMLResponse)
 def waves(wave: str, request: Request):
+    try:
+        waveIndex = wavesList.index(wave)
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Wave not found")
     return templates.TemplateResponse('waves.html', {"request": request, "wave": wave})
 
 
-@router.get('/curves', response_class=HTMLResponse)
-def curves(request: Request):
-    return templates.TemplateResponse('curves.html', {"request": request})
+@router.get('/curves', response_class=RedirectResponse)
+def curveRedirect():
+    return "/curves/quad"
+
+@router.get('/curves/{curve}', response_class=HTMLResponse)
+def curves(curve: str, request: Request):
+    try:
+        curveIndex = curvesList.index(curve)
+    except ValueError:
+        raise HTTPException(status_code=404, detail="Curve not found")
+    
+    b = 2
+    if curve in bZero:
+        b = 0
+    elif curve == 'pow':
+        b = 1
+
+    return templates.TemplateResponse('curves.html', {"request": request, "curve": curve, "b": b})

@@ -5,21 +5,35 @@
   <link rel="stylesheet" href="{{ url_for('static', path='/curves.css')}}" >
 {% endblock %}
 
-{% block content %}
-  <h1 class="my-3">Curves</h1>
+{% block secnav %}
+<nav id="secnav" class="navbar navbar-expand sticky-top navbar-light">
+  <div class="container">
+    <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold">
+      <li class="nav-item" data-value="quad">
+        <a class="nav-link" href="/curves/quad">Quadratic<br/>(a(x)&sup2; + b(x))</a>
+      </li>
+      <li class="nav-item" data-value="pow">
+        <a class="nav-link" href="/curves/pow">Power<br/>(a(x)&#x1d47;)</a>
+      </li>
+      <li class="nav-item" data-value="exp">
+        <a class="nav-link" href="/curves/exp">Exponential<br/>(a(b)&#x02e3;)</a>
+      </li>
+      <li class="nav-item" data-value="expf">
+        <a class="nav-link" href="/curves/expf">Exponential Fraction<br/>(a(1/b)&#x02e3;)</a>
+      </li>
+      <li class="nav-item" data-value="ln">
+        <a class="nav-link" href="/curves/ln">Natural Log<br/>(a(ln(x))+b)</a>
+      </li>
+      <li class="nav-item" data-value="log">
+        <a class="nav-link" href="/curves/log">Logarithm<br/>(a(log(x))+b)</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
 
+{% block content %}
   <form class="row row-cols-auto align-items-center justify-content-center">
-    <div class="mb-3 mb-0-md px-0">
-      <label for="math" class="col-form-label py-0 mb-1">Function to Graph:</label>
-      <select id="math" class="form-control-sm mx-2" onchange="handleFuncChange()">
-        <option value="quad" selected>Quadratic (a(x)&sup2; + b(x))</option>
-        <option value="pow">Power (a(x)&#x1d47;)</option>
-        <option value="exp">Exponential (a(b)&#x02e3;)</option>
-        <option value="expf">Exponential Fraction (a(1/b)&#x02e3;)</option>
-        <option value="ln">Natural Log (a(ln(x))+b)</option>
-        <option value="log">Logarithm (a(log(x))+b)</option>
-      </select>
-    </div>
     <div class="mb-3 mb-0-md px-0">
       <label for="a" class="col-form-label py-0 mb-1">a:</label>
       <input
@@ -39,7 +53,7 @@
         id="b"
         class="form-control-sm mx-2 pe-0"
         type="number"
-        value="0"
+        value={{b}}
         min="-10"
         max="10"
         step="1"
@@ -47,9 +61,10 @@
       >
     </div>
   </form>
-  <img id="graph" src="/quad/1/0">
+  <img id="graph" src={{"/%s/1/%d" % (curve, b)}}>
 {% endblock %}
 
 {% block scripts %}
+  <script type="text/javascript">let math = {{ curve | tojson }};</script>
   <script type="text/javascript" src="{{ url_for('static', path='/curves.js')}}" ></script>
 {% endblock %}
