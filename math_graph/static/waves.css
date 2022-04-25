@@ -5,3 +5,8 @@
 input {
   width: 5em;
 }
+
+#graph {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}

@@ -1,14 +1,18 @@
 function ready(){
   document.querySelector("#waveslink .nav-link").classList.add("active");
   document.querySelector(`li[data-value='${math}'] a`).classList.add("active");
+  handleChange();
 }
 
-function handleChange() {
+async function handleChange() {
   const func = DOMPurify.sanitize(math);
   const coef = DOMPurify.sanitize(document.getElementById("coef").value);
-  const img = `/${math}/${coef}`;
+  const route = `/${math}/${coef}`;
 
-  document.getElementById("graph").setAttribute("src", img);
+  const response = await fetch(route);
+  const item = await response.json();
+  document.getElementById("graph").textContent = '';
+  Bokeh.embed.embed_item(item, "graph");
 }
 
 if (document.readyState !== "loading") {

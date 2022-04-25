@@ -6,20 +6,6 @@ import numpy as np
 router = APIRouter()
 
 
-@router.get('/sin/{freq}')
-def graph_sine(freq: int):
-    x_values = np.arange(-5, 5, 0.01)
-    y_values = np.sin(x_values*freq)
-    return RedirectResponse(build_graph(x_values, y_values))
-
-
-@router.get('/cos/{freq}')
-def graph_cosine(freq: int):
-    x_values = np.arange(-5, 5, 0.01)
-    y_values = np.cos(x_values*freq)
-    return RedirectResponse(build_graph(x_values, y_values))
-
-
 @router.get('/quad/{a}/{b}')
 def graph_quad(a: int, b: int):
     x_values = np.arange(-5, 5, 0.01)

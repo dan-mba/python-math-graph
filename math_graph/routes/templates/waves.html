@@ -29,18 +29,20 @@
         class="form-control-sm mx-2 pe-0"
         type="number"
         value="1"
-        min="-10"
+        min="1"
         max="10"
         step="1"
         onchange="handleChange()"
       >
     </div>
   </form>
+  <div>{{css_resources}}</div>
   <br>
-  <img id="graph" src={{"/%s/1" % wave}}>
+  <div id="graph"/>
 {% endblock %}
 
 {% block scripts %}
+  {{ js_resources|safe }}
   <script type="text/javascript">let math = {{ wave | tojson }};</script>
   <script type="text/javascript" src="{{ url_for('static', path='/waves.js')}}" ></script>
 {% endblock %}
