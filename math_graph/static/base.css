@@ -1,0 +1,26 @@
+#small {
+  display: none;
+  font-size: 2rem;
+  margin: 1rem auto;
+  padding: 0 0.5rem;
+}
+
+@media(max-width: 600px) {
+  #main, nav.navbar {
+    display: none;
+  }
+
+  #small {
+    display: block;
+  }
+}
+
+#main {
+  padding-top: 60px;
+}
+.navbar .container {
+  justify-content: center;
+}
+img {
+  max-width: 100%;
+}

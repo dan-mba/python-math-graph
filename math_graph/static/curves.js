@@ -4,15 +4,19 @@ function ready(){
   if (math === "exp" || math === "expf") {
     document.getElementById("b").setAttribute("min", "1");
   }
+  handleChange();
 }
 
-function handleChange(e) {
+async function handleChange(e) {
   const func = DOMPurify.sanitize(math);
   const a = DOMPurify.sanitize(document.getElementById("a").value);
   const b = DOMPurify.sanitize(document.getElementById("b").value);
-  const img = `/${math}/${a}/${b}`;
+  const route = `/${math}/${a}/${b}`;
 
-  document.getElementById("graph").setAttribute("src", img);
+  const response = await fetch(route);
+  const item = await response.json();
+  document.getElementById("graph").textContent = '';
+  Bokeh.embed.embed_item(item, "graph");
 }
 
 if (document.readyState !== "loading") {

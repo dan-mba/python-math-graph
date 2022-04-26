@@ -1,30 +1,32 @@
 from fastapi import APIRouter
-from fastapi.responses import JSONResponse
+from fastapi.responses import RedirectResponse, JSONResponse
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
 from bokeh.embed import json_item
+from ..graph import build_graph
 import numpy as np
 
 router = APIRouter()
-N = 200
+N = 400
 
-@router.get('/sin/{freq}')
-def graph_sine(freq: int):
-    x_values = np.linspace(-2*np.pi, 2*np.pi, N)
-    y_values = np.sin(x_values*freq)
+
+@router.get('/ln/{a}/{b}')
+def graph_ln(a: int, b: int):
+    x_values = np.linspace(0.01, 10, N)
+    y_values = (a * np.log(x_values) + b)
     source = ColumnDataSource(data=dict(x=x_values, y=y_values))
 
-    plot = figure(height=600, width=600, x_range=[-2*np.pi, 2*np.pi], y_range=[-1.5, 1.5])
+    plot = figure(height=600, width=600, x_range=[-0.1, 10.1])
     plot.line('x', 'y', source=source, line_width=3, line_color='#14134c')
     return JSONResponse(content=json_item(plot))
 
 
-@router.get('/cos/{freq}')
-def graph_cosine(freq: int):
-    x_values = np.linspace(-2*np.pi, 2*np.pi, N)
-    y_values = np.cos(x_values*freq)
+@router.get('/log/{a}/{b}')
+def graph_log(a: int, b: int):
+    x_values = np.linspace(0.01, 10, N)
+    y_values = (a * np.log10(x_values) + b)
     source = ColumnDataSource(data=dict(x=x_values, y=y_values))
 
-    plot = figure(x_range=[-2*np.pi, 2*np.pi], y_range=[-1.5, 1.5])
+    plot = figure(height=600, width=600, x_range=[-0.1, 10.1])
     plot.line('x', 'y', source=source, line_width=3, line_color='#14134c')
     return JSONResponse(content=json_item(plot))

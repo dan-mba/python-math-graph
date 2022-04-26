@@ -1,53 +1,37 @@
 from fastapi import APIRouter
-from fastapi.responses import RedirectResponse
-from ..graph import build_graph
+from fastapi.responses import JSONResponse
+from bokeh.models import ColumnDataSource
+from bokeh.plotting import figure
+from bokeh.embed import json_item
 import numpy as np
 
 router = APIRouter()
-
+N = 400
 
 @router.get('/quad/{a}/{b}')
 def graph_quad(a: int, b: int):
-    x_values = np.arange(-5, 5, 0.01)
+    x_values = np.linspace(-2, 2, N)
     y_values = (a * np.power(x_values, 2)) + (b * x_values)
-    return RedirectResponse(build_graph(x_values, y_values))
+    source = ColumnDataSource(data=dict(x=x_values, y=y_values))
+
+    plot = figure(height=600, width=600, x_range=[-2.1, 2.1])
+    plot.line('x', 'y', source=source, line_width=3, line_color='#14134c')
+    return JSONResponse(content=json_item(plot))
 
 
 @router.get('/pow/{a}/{b}')
 def graph_pow(a: int, b: int):
     if b >= 0:
         x_values = np.concatenate(
-            (np.arange(-5, -.01, 0.01), np.arange(.01, 5, .01)))
+            (np.linspace(-2, -.01, round(N/2)), np.linspace(.01, 2, round(N/2))))
+        x_range = [-2.1, 2.1]
     else:
         x_values = np.concatenate(
-            (np.arange(-.1, -.01, 0.001), np.arange(.01, .1, .001)))
+            (np.linspace(-.02, -.001, round(N/2)), np.linspace(.001, .02, round(N/2))))
+        x_range = [-.021, .021]
     y_values = (a * np.power(x_values, b))
-    return RedirectResponse(build_graph(x_values, y_values, True))
+    source = ColumnDataSource(data=dict(x=x_values, y=y_values))
 
-
-@router.get('/exp/{a}/{b}')
-def graph_exp(a: int, b: int):
-    x_values = np.arange(-5, 5, 0.01)
-    y_values = (a * np.power(b, x_values))
-    return RedirectResponse(build_graph(x_values, y_values, True))
-
-
-@router.get('/expf/{a}/{b}')
-def graph_expf(a: int, b: int):
-    x_values = np.arange(-5, 5, 0.01)
-    y_values = (a * np.power((1/b), x_values))
-    return RedirectResponse(build_graph(x_values, y_values, True))
-
-
-@router.get('/ln/{a}/{b}')
-def graph_ln(a: int, b: int):
-    x_values = np.arange(0.01, 10, 0.01)
-    y_values = (a * np.log(x_values) + b)
-    return RedirectResponse(build_graph(x_values, y_values, True))
-
-
-@router.get('/log/{a}/{b}')
-def graph_log(a: int, b: int):
-    x_values = np.arange(0.01, 10, 0.01)
-    y_values = (a * np.log10(x_values) + b)
-    return RedirectResponse(build_graph(x_values, y_values, True))
+    plot = figure(height=600, width=600, x_range=x_range)
+    plot.line('x', 'y', source=source, line_width=3, line_color='#14134c')
+    return JSONResponse(content=json_item(plot))
