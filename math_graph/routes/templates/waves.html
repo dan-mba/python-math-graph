@@ -21,12 +21,14 @@
 {% endblock %}
 
 {% block content %}
-  <form class="row row-cols-auto align-items-center justify-content-center">
-    <div class="mb-3 mb-0-md px-0">
-      <label for="coef" class="col-form-label py-0 mb-1">Frequency:</label>
+  <form class="row align-items-center justify-content-center mb-4">
+    <div class="col-auto">
+      <label for="coef" class="col-form-label">Frequency:</label>
+    </div>
+    <div class="col-auto">
       <input
         id="coef"
-        class="form-control-sm mx-2 pe-0"
+        class="form-control-sm"
         type="number"
         value="1"
         min="1"
@@ -36,8 +38,6 @@
       >
     </div>
   </form>
-  <div>{{css_resources}}</div>
-  <br>
   <div id="graph"/>
 {% endblock %}
 
