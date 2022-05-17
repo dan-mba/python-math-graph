@@ -1,9 +1,9 @@
-fastapi==0.76.0
+fastapi==0.78.0
 uvicorn[standard]==0.17.6
 gunicorn==20.1.0
 jinja2==3.1.2
 aiofiles==0.8.0
 bokeh==2.4.2
 numpy==1.22.3
-pylint==2.13.8
+pylint==2.13.9
 autopep8==1.6.0
