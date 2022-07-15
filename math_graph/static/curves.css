@@ -1,5 +1,9 @@
-input {
-  width: 5em;
+.nav-item {
+  line-height: 1.1rem;
+}
+
+.nav-link {
+  text-align: center;
 }
 
 #math {

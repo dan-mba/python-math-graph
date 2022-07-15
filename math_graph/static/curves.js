@@ -1,26 +1,22 @@
 function ready(){
   document.querySelector("#curveslink .nav-link").classList.add("active");
-  document.querySelector("form").reset();
-}
-
-function handleChange(e) {
-  const math = DOMPurify.sanitize(document.getElementById("math").value);
-  const a = DOMPurify.sanitize(document.getElementById("a").value);
-  const b = DOMPurify.sanitize(document.getElementById("b").value);
-  const img = '/' + math + '/' + a + '/' + b;
-
-  document.getElementById("graph").setAttribute("src", img);
-}
-
-function handleFuncChange(e) {
-  const math = document.getElementById("math").value;
+  document.querySelector(`li[data-value='${math}'] a`).classList.add("active");
   if (math === "exp" || math === "expf") {
     document.getElementById("b").setAttribute("min", "1");
-    if (parseInt(document.getElementById("b").value, 10) < 1) {
-      document.getElementById("b").value = 2;
-    }
   }
-  handleChange(e);
+  handleChange();
+}
+
+async function handleChange(e) {
+  const func = DOMPurify.sanitize(math);
+  const a = DOMPurify.sanitize(document.getElementById("a").value);
+  const b = DOMPurify.sanitize(document.getElementById("b").value);
+  const route = `/${math}/${a}/${b}`;
+
+  const response = await fetch(route);
+  const item = await response.json();
+  document.getElementById("graph").textContent = '';
+  Bokeh.embed.embed_item(item, "graph");
 }
 
 if (document.readyState !== "loading") {

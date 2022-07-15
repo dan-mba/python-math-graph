@@ -1,39 +1,47 @@
 {% extends 'base.html' %}
 
 {% block head %}
-  <title>Home Page</title>
-  <link rel="stylesheet" href="{{ url_for('static', path='/waves.css')}}" >
+  <title>Waves</title>
+{% endblock %}
+
+{% block secnav %}
+<nav id="secnav" class="navbar navbar-expand sticky-top navbar-light">
+  <div class="container">
+    <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold">
+      <li class="nav-item" data-value="sin">
+        <a class="nav-link" href="/waves/sin">Sin</a>
+      </li>
+      <li class="nav-item" data-value="cos">
+        <a class="nav-link" href="/waves/cos">Cos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 {% endblock %}
 
 {% block content %}
-  <h1 class="my-3">Waves</h1>
-
-  <form class="row row-cols-auto align-items-center justify-content-center">
-    <div class="mb-3 mb-0-md px-0">
-      <label for="math" class="col-form-label py-0 mb-1">Function to Graph:</label>
-      <select id="math" class="form-control-sm mx-2" onchange="handleChange()">
-        <option value="sin" selected>Sin</option>
-        <option value="cos">Cos</option>
-      </select>
+  <form class="row align-items-center justify-content-center mb-4">
+    <div class="col-auto">
+      <label for="coef" class="col-form-label">Frequency:</label>
     </div>
-    <div class="mb-3 mb-0-md px-0">
-      <label for="coef" class="col-form-label py-0 mb-1">Frequency:</label>
+    <div class="col-auto">
       <input
         id="coef"
-        class="form-control-sm mx-2 pe-0"
+        class="form-control-sm"
         type="number"
         value="1"
-        min="-10"
+        min="1"
         max="10"
         step="1"
         onchange="handleChange()"
       >
     </div>
   </form>
-  <br>
-  <img id="graph" src="/sin/1">
+  <div id="graph"/>
 {% endblock %}
 
 {% block scripts %}
+  {{ js_resources|safe }}
+  <script type="text/javascript">let math = {{ wave | tojson }};</script>
   <script type="text/javascript" src="{{ url_for('static', path='/waves.js')}}" ></script>
 {% endblock %}

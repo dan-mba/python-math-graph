@@ -1,0 +1,57 @@
+#small {
+  display: none;
+  font-size: 2rem;
+  margin: 1rem auto;
+  padding: 0 0.5rem;
+}
+
+@media(max-width: 600px) {
+  #main, nav.navbar {
+    display: none;
+  }
+
+  #small {
+    display: block;
+  }
+}
+
+#main {
+  padding-top: 1.5rem;
+}
+
+.navbar-dark {
+  height: 3.5rem;
+}
+
+.navbar-light {
+  background-color: #d8d8d8;
+  height: 4.25rem;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0,0,0,.6);
+}
+
+.navbar-nav {
+  gap: 0.5rem;
+}
+
+.navbar .container {
+  justify-content: center;
+}
+
+input.form-control-sm {
+  width: 4em;
+  padding: 0;
+  padding-left: 0.5em;
+  min-height: unset;
+}
+
+#graph {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.bk-root .bk-right .bk-toolbar-button.bk-active {
+  border-left-color: slategrey;
+}
