@@ -1,9 +1,8 @@
 from fastapi import APIRouter
-from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi.responses import JSONResponse
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
 from bokeh.embed import json_item
-from ..graph import build_graph
 import numpy as np
 
 router = APIRouter()
