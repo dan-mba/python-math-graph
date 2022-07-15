@@ -7,6 +7,7 @@ import numpy as np
 
 router = APIRouter()
 N = 400
+line_color = '#4682b4'
 
 @router.get('/quad/{a}/{b}')
 def graph_quad(a: int, b: int):
@@ -15,7 +16,7 @@ def graph_quad(a: int, b: int):
     source = ColumnDataSource(data=dict(x=x_values, y=y_values))
 
     plot = figure(height=600, width=600, x_range=[-2.1, 2.1])
-    plot.line('x', 'y', source=source, line_width=3, line_color='#14134c')
+    plot.line('x', 'y', source=source, line_width=3, line_color=line_color)
     return JSONResponse(content=json_item(plot))
 
 
@@ -27,7 +28,7 @@ def graph_pow(a: int, b: int):
         source = ColumnDataSource(data=dict(x=x_values, y=y_values))
 
         plot = figure(height=600, width=600, x_range=[-2.1, 2.1])
-        plot.line('x', 'y', source=source, line_width=3, line_color='#14134c')
+        plot.line('x', 'y', source=source, line_width=3, line_color=line_color)
     else:
         x_values_neg = np.linspace(-.01, -.0001, round(N/2))
         x_values_pos = np.linspace(.0001, .01, round(N/2))
@@ -38,7 +39,7 @@ def graph_pow(a: int, b: int):
         source_pos = ColumnDataSource(data=dict(x=x_values_pos, y=y_values_pos))
 
         plot = figure(height=600, width=600, x_range=x_range)
-        plot.line('x', 'y', source=source_neg, line_width=3, line_color='#14134c')
-        plot.line('x', 'y', source=source_pos, line_width=3, line_color='#14134c')
+        plot.line('x', 'y', source=source_neg, line_width=3, line_color=line_color)
+        plot.line('x', 'y', source=source_pos, line_width=3, line_color=line_color)
 
     return JSONResponse(content=json_item(plot))

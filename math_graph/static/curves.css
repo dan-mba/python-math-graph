@@ -1,7 +1,3 @@
-.navbar-light {
-  background-color: #e8e8e8;
-}
-
 .nav-item {
   line-height: 1.1rem;
 }
@@ -10,16 +6,6 @@
   text-align: center;
 }
 
-input {
-  width: 5em;
-}
-
 #math {
   width: 15em;
 }
-
-#graph {
-  max-width: 600px;
-  margin: 0 auto 2rem;
-}
-

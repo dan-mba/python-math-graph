@@ -7,7 +7,7 @@ import numpy as np
 
 router = APIRouter()
 N = 400
-
+line_color = '#4682b4'
 
 @router.get('/exp/{a}/{b}')
 def graph_exp(a: int, b: int):
@@ -16,7 +16,7 @@ def graph_exp(a: int, b: int):
     source = ColumnDataSource(data=dict(x=x_values, y=y_values))
 
     plot = figure(height=600, width=600, x_range=[-5.1, 5.1])
-    plot.line('x', 'y', source=source, line_width=3, line_color='#14134c')
+    plot.line('x', 'y', source=source, line_width=3, line_color=line_color)
     return JSONResponse(content=json_item(plot))
 
 
@@ -27,6 +27,6 @@ def graph_expf(a: int, b: int):
     source = ColumnDataSource(data=dict(x=x_values, y=y_values))
 
     plot = figure(height=600, width=600, x_range=[-5.1, 5.1])
-    plot.line('x', 'y', source=source, line_width=3, line_color='#14134c')
+    plot.line('x', 'y', source=source, line_width=3, line_color=line_color)
     return JSONResponse(content=json_item(plot))
 
