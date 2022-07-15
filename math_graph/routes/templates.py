@@ -34,11 +34,11 @@ def waves(wave: str, request: Request):
     except ValueError:
         raise HTTPException(status_code=404, detail="Wave not found")
     return templates.TemplateResponse('waves.html',
-                                        {
-                                            "request": request,
-                                            "wave": wave,
-                                            "js_resources": js_resources
-                                        })
+                                      {
+                                          "request": request,
+                                          "wave": wave,
+                                          "js_resources": js_resources
+                                      })
 
 
 @router.get('/curves', response_class=RedirectResponse)
@@ -60,9 +60,9 @@ def curves(curve: str, request: Request):
         b = 1
 
     return templates.TemplateResponse('curves.html',
-                                        {
-                                            "request": request,
-                                            "curve": curve,
-                                            "b": b,
-                                            "js_resources": js_resources
-                                        })
+                                      {
+                                          "request": request,
+                                          "curve": curve,
+                                          "b": b,
+                                          "js_resources": js_resources
+                                      })

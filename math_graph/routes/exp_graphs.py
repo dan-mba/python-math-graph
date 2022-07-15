@@ -9,6 +9,7 @@ router = APIRouter()
 N = 400
 line_color = '#4682b4'
 
+
 @router.get('/exp/{a}/{b}')
 def graph_exp(a: int, b: int):
     x_values = np.linspace(-5, 5, N)
@@ -29,4 +30,3 @@ def graph_expf(a: int, b: int):
     plot = figure(height=600, width=600, x_range=[-5.1, 5.1])
     plot.line('x', 'y', source=source, line_width=3, line_color=line_color)
     return JSONResponse(content=json_item(plot))
-

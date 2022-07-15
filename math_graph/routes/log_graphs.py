@@ -9,6 +9,7 @@ router = APIRouter()
 N = 400
 line_color = '#4682b4'
 
+
 @router.get('/ln/{a}/{b}')
 def graph_ln(a: int, b: int):
     x_values = np.linspace(0.01, 10, N)

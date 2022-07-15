@@ -9,6 +9,7 @@ router = APIRouter()
 N = 400
 line_color = '#4682b4'
 
+
 @router.get('/quad/{a}/{b}')
 def graph_quad(a: int, b: int):
     x_values = np.linspace(-2, 2, N)
@@ -35,11 +36,15 @@ def graph_pow(a: int, b: int):
         x_range = [-.011, .011]
         y_values_pos = (a * np.power(x_values_pos, b))
         y_values_neg = (a * np.power(x_values_neg, b))
-        source_neg = ColumnDataSource(data=dict(x=x_values_neg, y=y_values_neg))
-        source_pos = ColumnDataSource(data=dict(x=x_values_pos, y=y_values_pos))
+        source_neg = ColumnDataSource(
+            data=dict(x=x_values_neg, y=y_values_neg))
+        source_pos = ColumnDataSource(
+            data=dict(x=x_values_pos, y=y_values_pos))
 
         plot = figure(height=600, width=600, x_range=x_range)
-        plot.line('x', 'y', source=source_neg, line_width=3, line_color=line_color)
-        plot.line('x', 'y', source=source_pos, line_width=3, line_color=line_color)
+        plot.line('x', 'y', source=source_neg,
+                  line_width=3, line_color=line_color)
+        plot.line('x', 'y', source=source_pos,
+                  line_width=3, line_color=line_color)
 
     return JSONResponse(content=json_item(plot))
