@@ -2,42 +2,39 @@
 
 {% block head %}
   <title>Curves</title>
-  <link rel="stylesheet" href="{{ url_for('static', path='/curves.css')}}" >
 {% endblock %}
 
 {% block secnav %}
-<nav id="secnav" class="navbar navbar-expand sticky-top navbar-light">
-  <div class="container">
-    <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold">
-      <li class="nav-item" data-value="quad">
-        <a class="nav-link" href="/curves/quad">Quadratic<br/>(a(x)&sup2; + b(x))</a>
-      </li>
-      <li class="nav-item" data-value="pow">
-        <a class="nav-link" href="/curves/pow">Power<br/>(a(x)&#x1d47;)</a>
-      </li>
-      <li class="nav-item" data-value="exp">
-        <a class="nav-link" href="/curves/exp">Exponential<br/>(a(b)&#x02e3;)</a>
-      </li>
-      <li class="nav-item" data-value="expf">
-        <a class="nav-link" href="/curves/expf">Exponential Fraction<br/>(a(1/b)&#x02e3;)</a>
-      </li>
-      <li class="nav-item" data-value="ln">
-        <a class="nav-link" href="/curves/ln">Natural Log<br/>(a(ln(x))+b)</a>
-      </li>
-      <li class="nav-item" data-value="log">
-        <a class="nav-link" href="/curves/log">Logarithm<br/>(a(log(x))+b)</a>
-      </li>
-    </ul>
-  </div>
+<nav id="secnav" class="navbar-light">
+  <ul>
+    <li data-value="quad">
+      <a href="/curves/quad">Quadratic<br/>(a(x)&sup2; + b(x))</a>
+    </li>
+    <li data-value="pow">
+      <a href="/curves/pow">Power<br/>(a(x)&#x1d47;)</a>
+    </li>
+    <li data-value="exp">
+      <a href="/curves/exp">Exponential<br/>(a(b)&#x02e3;)</a>
+    </li>
+    <li data-value="expf">
+      <a href="/curves/expf">Exponential Fraction<br/>(a(1/b)&#x02e3;)</a>
+    </li>
+    <li data-value="ln">
+      <a href="/curves/ln">Natural Log<br/>(a(ln(x))+b)</a>
+    </li>
+    <li data-value="log">
+      <a href="/curves/log">Logarithm<br/>(a(log(x))+b)</a>
+    </li>
+  </ul>
 </nav>
 {% endblock %}
 
 {% block content %}
-  <form class="row align-items-center justify-content-center mb-4">
-    <div class="col-auto">
-      <label for="a" class="col-form-label">a:</label>
+  <form>
+    <div>
+      <label for="a">a:</label>
     </div>
-    <div class="col-auto">
+    <div>
       <input
         id="a"
         class="form-control-sm"
@@ -49,10 +46,10 @@
         onchange="handleChange()"
       >
     </div>
-    <div class="col-auto">
-      <label for="b" class="col-form-label">b:</label>
+    <div>
+      <label for="b">b:</label>
     </div>
-    <div class="col-auto">
+    <div>
       <input
         id="b"
         class="form-control-sm"

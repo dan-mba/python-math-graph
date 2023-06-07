@@ -1,5 +1,5 @@
 function ready(){
-  document.querySelector("#curveslink .nav-link").classList.add("active");
+  document.querySelector("#curveslink a").classList.add("active");
   document.querySelector(`li[data-value='${math}'] a`).classList.add("active");
   if (math === "exp" || math === "expf") {
     document.getElementById("b").setAttribute("min", "1");

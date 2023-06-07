@@ -1,5 +1,5 @@
 function ready(){
-  document.querySelector("#waveslink .nav-link").classList.add("active");
+  document.querySelector("#waveslink a").classList.add("active");
   document.querySelector(`li[data-value='${math}'] a`).classList.add("active");
   handleChange();
 }
