@@ -1,1 +1,1 @@
-web: gunicorn -w 2 -k uvicorn.workers.UvicornWorker math_graph:app --log-file=-
+web: hypercorn -w 4 --log-file=- --access-logfile=-  math_graph:app
