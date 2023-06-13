@@ -5,26 +5,24 @@
 {% endblock %}
 
 {% block secnav %}
-<nav id="secnav" class="navbar navbar-expand sticky-top navbar-light">
-  <div class="container">
-    <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold">
-      <li class="nav-item" data-value="sin">
-        <a class="nav-link" href="/waves/sin">Sin</a>
-      </li>
-      <li class="nav-item" data-value="cos">
-        <a class="nav-link" href="/waves/cos">Cos</a>
-      </li>
-    </ul>
-  </div>
+<nav id="secnav" class="navbar-light">
+  <ul>
+    <li data-value="sin">
+      <a href="/waves/sin">Sin</a>
+    </li>
+    <li data-value="cos">
+      <a href="/waves/cos">Cos</a>
+    </li>
+  </ul>
 </nav>
 {% endblock %}
 
 {% block content %}
-  <form class="row align-items-center justify-content-center mb-4">
-    <div class="col-auto">
-      <label for="coef" class="col-form-label">Frequency:</label>
+  <form>
+    <div>
+      <label for="coef">Frequency:</label>
     </div>
-    <div class="col-auto">
+    <div>
       <input
         id="coef"
         class="form-control-sm"
