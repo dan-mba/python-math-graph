@@ -41,5 +41,5 @@
 {% block scripts %}
   {{ js_resources|safe }}
   <script type="text/javascript">let math = {{ wave | tojson }};</script>
-  <script type="text/javascript" src="{{ url_for('static', path='/waves.js')}}" ></script>
+  <script type="text/javascript" src="/static/waves.js" ></script>
 {% endblock %}
