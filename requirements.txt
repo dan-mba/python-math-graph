@@ -4,7 +4,7 @@ fastapi==0.104.1
 hypercorn==0.15.0
 jinja2==3.1.2
 aiofiles==23.2.1
-bokeh==3.3.1
+bokeh==3.3.2
 numpy==1.26.2
 pylint==3.0.2
 autopep8==2.0.4
