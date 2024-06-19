@@ -7,4 +7,4 @@ aiofiles==23.2.1
 bokeh==3.4.1
 numpy==2.0.0
 pylint==3.2.3
-autopep8==2.2.0
+autopep8==2.3.0
