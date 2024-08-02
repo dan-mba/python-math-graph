@@ -1,7 +1,7 @@
 fastapi==0.111.1
 hypercorn==0.17.3
 jinja2==3.1.4
-bokeh==3.5.0
+bokeh==3.5.1
 numpy==2.0.1
 pylint==3.2.6
 autopep8==2.3.1
