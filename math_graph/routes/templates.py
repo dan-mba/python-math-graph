@@ -33,12 +33,9 @@ def waves(wave: str, request: Request):
         waveIndex = wavesList.index(wave)
     except ValueError:
         raise HTTPException(status_code=404, detail="Wave not found")
-    return templates.TemplateResponse('waves.html',
-                                      {
-                                          "request": request,
-                                          "wave": wave,
-                                          "js_resources": js_resources
-                                      })
+    return templates.TemplateResponse(
+        request=request, name="waves.html", context={"wave": wave, "js_resources": js_resources}
+    )
 
 
 @router.get('/curves', response_class=RedirectResponse)
@@ -59,10 +56,6 @@ def curves(curve: str, request: Request):
     elif curve == 'pow':
         b = 1
 
-    return templates.TemplateResponse('curves.html',
-                                      {
-                                          "request": request,
-                                          "curve": curve,
-                                          "b": b,
-                                          "js_resources": js_resources
-                                      })
+    return templates.TemplateResponse(
+        request=request, name="curves.html", context={"curve": curve, "b": b, "js_resources": js_resources}
+    )
