@@ -18,7 +18,9 @@ templates = Jinja2Templates(directory=path.join(
 
 @router.get('/', response_class=HTMLResponse)
 def home(request: Request):
-    return templates.TemplateResponse('home.html', {"request": request})
+    return templates.TemplateResponse(
+        request=request, name="home.html"
+    )
 
 
 @router.get('/waves', response_class=RedirectResponse)
